@@ -21,7 +21,7 @@ exports.crearUsuario = async (req, res) => {
     if (usuario) {
       return res
         .status(400)
-        .json({ msg: "El usuario " + usuario.email + " ya existe" });
+        .json({ msg: "El usuario " + usuario.email + " ya se encuentra registrado" });
     }
 
     //crea el nuevo user
