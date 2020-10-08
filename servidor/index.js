@@ -1,40 +1,34 @@
-const express = require('express');
-const conectarDB= require ('./config/db');
-const cors = require('cors')
-
-//crear el server
+const express = require("express");
+//requiere el archivo de conexion de la DB
+const conectarDB = require("./config/db");
+const cors = require("cors");
+ 
+//crea la app de express
 const app = express();
-
-
-//COnectar a la base de datos
+ 
+//invoca la funcion
 conectarDB();
-
-//habilitar cors
+ 
+//habilita cors
 app.use(cors());
-
-//Habilitar express.json
-app.use(express.json({extended: true}));
-
-
-//puerto de la app
+ 
+//habilita a la app a usar JSON por medio de express
+app.use(express.json({ extend: true }));
+ 
+//asigna a la constante el puerto asignado el el archivo de enviroment o el 4000
 const port = process.env.PORT || 4000;
-
-//Importar rutas
-
-app.use('/api/usuarios', require('./routes/usuarios'));
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/proyectos', require('./routes/proyectos'));
-app.use('/api/tareas', require('./routes/tareas'));
-
-
-//Definir la pagina principal
-// app.get('/', (req, res)=>{
-//     res.send('Hola mundo')
-// })
-
-
-
-//arrancar la app
+ 
+//crea las rutas y les asigna a las mismas sus distintos metodos
+//usuarios
+app.use("/api/usuarios", require("./routes/usuarios"));
+//autenticacion
+app.use("/api/auth", require("./routes/auth"));
+//proyectos
+app.use("/api/proyectos", require("./routes/proyectos"));
+//tareas
+app.use("/api/tareas", require("./routes/tareas"));
+ 
+//escucha las respuestas del servidor en el puerto
 app.listen(port, "0.0.0.0", () => {
-    console.log(`Server on port ${port}`);
-  });
+  console.log(`Server on port ${port}`);
+});
