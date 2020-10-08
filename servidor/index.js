@@ -29,6 +29,6 @@ app.use("/api/proyectos", require("./routes/proyectos"));
 app.use("/api/tareas", require("./routes/tareas"));
  
 //escucha las respuestas del servidor en el puerto
-app.listen(port, "0.0.0.0", () => {
+app.listen(process.env.PORT, "0.0.0.0", () => {
   console.log(`Server on port ${port}`);
 });
